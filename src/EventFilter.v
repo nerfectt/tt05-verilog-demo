@@ -26,7 +26,7 @@ wire [47:0] out;
         end
     end
 
-    always @(posedge)begin
+    always @(posedge) begin
         x_out <= out[47:32]; // non-blocking
         y_out <= out[31:16];
         t_out <= out[15:0];
