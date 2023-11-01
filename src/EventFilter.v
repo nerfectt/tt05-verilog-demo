@@ -18,7 +18,7 @@ reg [7:0] out;
 
     always @(*) begin
         if (p == 1'b1) begin
-            out = {x, y, t};
+            out = {x, y, p, t};
         end else begin
             out = 8'b0;
         end
@@ -33,7 +33,7 @@ reg [7:0] out;
         end else begin
             x_out <= out[7:6]; // non-blocking
             y_out <= out[5:4];
-            p_out <= p[3:2];
+            p_out <= out[3:2];
             t_out <= out[1:0];
     end
     end
