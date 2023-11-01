@@ -14,7 +14,7 @@ module EventFilter (
     output reg p_out
 );
 
-wire [24:0] out;
+wire [23:0] out;
 
 
     always @(*) begin
@@ -23,7 +23,7 @@ wire [24:0] out;
             out = {x, y, t};
             end
         end else begin
-            out = 0;
+            out = 23'b0;
         end
     end
 
