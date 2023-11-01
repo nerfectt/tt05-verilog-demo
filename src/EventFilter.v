@@ -14,7 +14,7 @@ module EventFilter (
     output reg [1:0] p_out // is there a way to bitmask
 );
 
-wire [7:0] out;
+reg [7:0] out;
 
     always @(*) begin
         if (p == 1'b1) begin
