@@ -29,12 +29,12 @@ documentation:
 
 # Longer description of how the project works. You can use standard markdown format.
   how_it_works: |
-  WILL UPDATE
+      WILL UPDATE
       
 
 # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
   how_to_test:  |
-  WILL UPDATE
+      WILL UPDATE
 
 
 # A description of what the inputs do (e.g. red button, SPI CLK, SPI MOSI, etc).
