@@ -28,7 +28,7 @@ wire [23:0] out;
     end
 
     always @(posedge clk) begin
-        x_out <= out[24:16]; // non-blocking
+        x_out <= out[23:16]; // non-blocking
         y_out <= out[15:8];
         t_out <= out[7:0];
         p_out <= p;
