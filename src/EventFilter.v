@@ -29,7 +29,7 @@ wire [7:0] out;
             x_out <= 2'b0;
             y_out <= 2'b0;
             p_out <= 2'b0;
-            t_out <= 2'bo;
+            t_out <= 2'b0;
         end else begin
             x_out <= out[6:5]; // non-blocking
             y_out <= out[4:3];
