@@ -17,20 +17,25 @@ module EventFilter (
 wire [7:0] out;
 
     always @(*) begin
-        if(!rst_n) begin
         if (p == 1'b1) begin
             out = {x, y, t};
-            end
         end else begin
             out = 8'b0;
         end
     end
 
     always @(posedge clk) begin
-        x_out <= out[6:5]; // non-blocking
-        y_out <= out[4:3];
-        p_out <= p[2:1];
-        t_out <= out[1:0];
+        if(!rst_n) begin
+            x_out <= 2'b0;
+            y_out <= 2'b0;
+            p_out <= 2'b0;
+            t_out <= 2'bo;
+        end else begin
+            x_out <= out[6:5]; // non-blocking
+            y_out <= out[4:3];
+            p_out <= p[2:1];
+            t_out <= out[1:0];
+    end
     end
 
 
