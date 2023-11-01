@@ -1,4 +1,4 @@
-`default_nettype none 
+`default_nettype none;
 
 module EventFilter (
     input wire [15:0] x, // Assuming that x, y, & t are 16-bits
@@ -6,6 +6,7 @@ module EventFilter (
     input wire [15:0] t,
     input wire p,        // Polarity is 1 bit (1 or 0 (or otherwise))
     input wire rst_n,
+    input wire clk, // Clock input
 
     output reg [15:0] x_out,
     output reg [15:0] y_out,
@@ -17,7 +18,7 @@ wire [47:0] out;
 
 
     always @(*) begin
-        if(!rstn_n) begin
+        if(!rst_n) begin
         if (p == 1'b1) begin
             out = {x, y, t};
             end
@@ -26,7 +27,7 @@ wire [47:0] out;
         end
     end
 
-    always @(posedge) begin
+    always @(posedge clk) begin
         x_out <= out[47:32]; // non-blocking
         y_out <= out[31:16];
         t_out <= out[15:0];

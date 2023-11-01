@@ -15,6 +15,6 @@ module tt_um_EventFilter (
     assign uio_oe = 8'b11111111;
 
     // instantiate 
-    EventFilter Filter1(.rst_n(rst_n),.x(ui_in), .y(ui_in), .p(ui_in), .t(ui_in), .x_out(uo_out), .y_out(uo_out), .p_out(uo_out), .t_out(uo_out));
+    EventFilter Filter1(.clk(clk),.rst_n(rst_n),.x(ui_in), .y(ui_in), .p(ui_in), .t(ui_in), .x_out(uo_out), .y_out(uo_out), .p_out(uo_out), .t_out(uo_out));
     // ^^ dont think i did this right...
 endmodule
