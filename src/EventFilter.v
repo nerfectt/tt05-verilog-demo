@@ -1,4 +1,4 @@
-`default_nettype none;
+`default_nettype none
 
 module EventFilter (
     input wire [15:0] x, // Assuming that x, y, & t are 16-bits
