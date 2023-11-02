@@ -26,7 +26,7 @@ async def test_my_design(dut):
     dut.ui_in.value = my_low_Tuple
 
     # wait for a while and run for 100 cycles
-    for _ in range():
+    for _ in range(100):
         await RisingEdge(dut.clk)
 
     #assert dut.ui_in.value == dut.uo_out.value
