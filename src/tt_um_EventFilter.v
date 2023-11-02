@@ -13,6 +13,7 @@ module tt_um_EventFilter (
 
     // use bidirectionals as outputs
     assign uio_oe = 8'b11111111;
+    assign uio_out = 8'b11111111;
 
     // instantiate 
     EventFilter Filter1(.clk(clk),.rst_n(rst_n),.x(ui_in[7:6]), .y(ui_in[5:4]), .p(ui_in[3:2]), .t(ui_in[1:0]), .x_out(uo_out[7:6]), .y_out(uo_out[5:4]), .p_out(uo_out[3:2]), .t_out(uo_out[1:0]));
