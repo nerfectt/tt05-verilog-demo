@@ -29,7 +29,15 @@ documentation:
 
 # Longer description of how the project works. You can use standard markdown format.
   how_it_works: |
-      WILL UPDATE
+    The 8 switches correspond to the tuple data input (L-R):
+      Switches 1 & 2: Value of x (2 bits)
+      Switches 3 & 4: Value of y ''
+      Switches 5 & 6: Value of p ''
+      Switches 7 & 8: Value of t ''
+
+    It utilizes a mux that output the original input tuple only if p is 01 (high event). 
+    The output tuple is then stored in a 8-bit wire bus to store the tuple, the bus will output corresponding to each parameter
+    if the polarity is high. If polarity is anything other than "1", the tuple will output as 8'b0.
       
 
 # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
@@ -37,6 +45,7 @@ documentation:
       Switches (L-R) 5 & 6 corresponds to the input value of the polarity of the tuple.
       If a high event is wanted - switch 5 should be low and switch 6 should be high. 
         This will cause the chip to output the tuple set from all the switches.
+
       If a low event is wanted = switch 5 can be low or high, and switch 6 should be high. 
         (Note* switch 6 can be low only and only if switch five is high simultaneously)
 

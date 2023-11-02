@@ -13,7 +13,7 @@ async def test_my_design(dut):
     dut._log.info("Start Sim")
 
     # initialize clk
-    clock = Clock(dut.clk, 1, units="ms")
+    clock = Clock(dut.clk, 1, units="ns")
     cocotb.start_soon(clock.start())
 
     # first reset, then stop after 10 clk cycles
@@ -42,7 +42,7 @@ async def test_my_design(dut):
     dut.ui_in.value = my_high_Tuple_new
 
     # wait for a while and run for 100 cycles
-    for _ in range(100):
+    for _ in range(50):
         await RisingEdge(dut.clk)
 
     dut._log.info("Finished Sim")
