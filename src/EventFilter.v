@@ -4,7 +4,7 @@ module EventFilter (
     input wire [1:0] x, // Assuming that x, y, & t are 16-bits
     input wire [1:0] y,
     input wire [1:0] t,
-    input wire [1:0] p,        // Polarity is 1 bit (1 or 0 (or otherwise))
+    input wire [1:0] p, // Polarity is 1 bit (1 or 0 (or otherwise))
     input wire rst_n,
     input wire clk, // Clock input
 
