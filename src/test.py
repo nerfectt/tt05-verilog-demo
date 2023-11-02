@@ -5,6 +5,7 @@ from cocotb.triggers import RisingEdge, FallingEdge, Timer, ClockCycles
 @cocotb.test()
 async def test_my_design(dut):
     my_high_Tuple = 151 # 10 01 01 11 
+    my_low_Tuple = 147 # 10 01 00 11
 
     dut._log.info("Start Sim")
 
@@ -20,12 +21,16 @@ async def test_my_design(dut):
     dut.ui_in.value = my_high_Tuple
     dut.ena.value = 1 # enable the design
 
+    # wait 10 cycles
+    await ClockCycles(dut.clk,10)
+    dut.ui_in.value = my_low_Tuple
+
     # wait for a while and run for 100 cycles
-    for _ in range(100):
+    for _ in range():
         await RisingEdge(dut.clk)
 
     #assert dut.ui_in.value == dut.uo_out.value
 
-    dut_log.info("Finished Sim")
+    dut._log.info("Finished Sim")
 
  
