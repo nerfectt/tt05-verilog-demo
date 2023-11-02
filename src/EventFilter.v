@@ -17,7 +17,7 @@ module EventFilter (
 reg [7:0] out;
 
     always @(*) begin
-        if (p == 1'b1) begin
+        if (p == 2'b01) begin
             out = {x, y, p, t};
         end else begin
             out = 8'b0;
