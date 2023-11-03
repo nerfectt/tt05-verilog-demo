@@ -21,6 +21,11 @@ module EventFilter (
 reg[1:0] state = IDLE;
 reg[1:0] p_prev = 2'b0;
 reg[2:0] counter = 3'b0;
+reg[1:0] x_prev = 2'b0;
+reg[1:0] y_prev = 2'b0;
+reg[1:0] t_prev = 2'b0;
+
+
 
 
 always @(posedge clk) begin
@@ -37,8 +42,11 @@ always @(posedge clk) begin
     case (state)
     IDLE: begin
         p_prev <= 2'b0;
-        counter <= 3'b0;
+        counter <= 3'b001;
         p_prev <= p;
+        x_prev <= x;
+        y_prev <= y;
+        t_prev <= t;
         state <= EVENT;
     end
     
@@ -51,10 +59,14 @@ always @(posedge clk) begin
                 counter <= counter + 1;
             end
         end else begin
-            p_prev <= 0;
-          {x_out, y_out, p_out, t_out} <={x, y, p, t};
+          {x_out, y_out, p_out, t_out} <= {x_prev, y_prev, p_prev, t_prev};
+            p_prev <= 2'b0;
+            x_prev <= 2'b0;
+            y_prev <= 2'b0;
+            t_prev <= 2'b0;
+
             state <= IDLE;
-            counter <= 0;
+            counter <= 3'b0;
         end
     end
       

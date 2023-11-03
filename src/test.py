@@ -5,10 +5,9 @@ from cocotb.triggers import RisingEdge, FallingEdge, Timer, ClockCycles
 @cocotb.test()
 async def test_my_design(dut):
     my_high_Tuple = 151 # 10 01 01 11 
-    my_high_Tuple_new = 199 # 11 00 01 11
-    my_low_Tuple_1 = 147 # 10 01 00 11 thus p is 0
-    my_low_Tuple_2 = 159 # 10 01 11 11 thus p is 3
-    my_low_Tuple_3 = 155 # 10 01 10 11 thus p is 2
+    my_high_Tuple_2 = 247 # 11 11 01 11
+
+    my_low_Tuple = 147 # 10 01 00 11 thus p is 0
 
     dut._log.info("Start Sim")
 
@@ -21,26 +20,37 @@ async def test_my_design(dut):
     await ClockCycles(dut.clk,10)
     dut.rst_n.value = 1 # take out of reset, inverse high
 
-    # once out of reset Test1
-    dut.ui_in.value = my_high_Tuple
     dut.ena.value = 1 # enable the design
 
-    # wait 10 cycles Test2
-    await ClockCycles(dut.clk,10)
-    dut.ui_in.value = my_low_Tuple_1
+    # Test 1: 5 cycles of high P
+    dut.ui_in.value = my_high_Tuple # 151
+    await ClockCycles(dut.clk,5)
 
-    # wait 10 cycles Test3
-    await ClockCycles(dut.clk,10)
-    dut.ui_in.value = my_low_Tuple_2
+    # Test 2: 5 cycles of low P
+    dut.ui_in.value = my_low_Tuple # 147
+    await ClockCycles(dut.clk,5)
 
-    # wait 10 cycles Test4
-    await ClockCycles(dut.clk,10)
-    dut.ui_in.value = my_low_Tuple_3
+    # Test 3: 4 cycles of high p & 1 cycle of low p
+    dut.ui_in.value = my_high_Tuple # 151
+    await ClockCycles(dut.clk,4)
+    dut.ui_in.value = my_low_Tuple # 147
+    await ClockCycles(dut.clk,1)
 
-    # back to high event and change the x,y,t tuple value
-    await ClockCycles(dut.clk,10)
-    dut.ui_in.value = my_high_Tuple_new
 
+
+
+    # # Test 2: 1 extra cycle of high p (diff x,y,t value)
+    # dut.ui_in.value = my_high_Tuple_new # 199
+    # await ClockCycles(dut.clk,1)
+
+    # #Test 3: 5 cycles of low p
+    # dut.ui_in.value = my_low_Tuple_1 # 147
+    # await ClockCycles(dut.clk,5)
+
+    # # Test 4: 1 extra cycle of low p (diff x,y,t value)
+    # dut.ui_in.value = my_low_Tuple_2 # 159
+    # await ClockCycles(dut.clk,1)
+    
     # wait for a while and run for 100 cycles
     for _ in range(50):
         await RisingEdge(dut.clk)
