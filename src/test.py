@@ -56,11 +56,7 @@ async def test_my_design(dut):
 
     # wait for an extra clock cycle
     dut.ui_in.value = 0
-    await ClockCycles(dut.clk,50)
-    
-    # # wait for a while and run for 100 cycles
-    # for _ in range(50):
-    #     await RisingEdge(dut.clk)
+    await ClockCycles(dut.clk,20)
 
     dut._log.info("Finished Sim")
 
