@@ -14,10 +14,9 @@ module EventFilter (
     output reg [1:0] p_out // is there a way to bitmask
 );
 
-parameter [1:0]  
-        IDLE = 2'b01,
-        EVENT = 2'b10
-;
+  parameter [1:0]  
+        IDLE = 2'b00,
+        EVENT = 2'b01;
 
 reg[1:0] state = IDLE;
 reg[1:0] p_prev = 2'b0;
@@ -28,7 +27,7 @@ always @(posedge clk) begin
     if(!rst_n) begin
         state <= IDLE;
         counter <= 3'b0;
-        p_prev <= 2'b0
+        p_prev <= 2'b0;
         x_out <= 2'b0;
         y_out <= 2'b0;
         p_out <= 2'b0;
@@ -36,7 +35,7 @@ always @(posedge clk) begin
     end
 
     case (state)
-    IDLE begin
+    IDLE: begin
         p_prev <= 2'b0;
         counter <= 3'b0;
         p_prev <= p;
@@ -44,7 +43,7 @@ always @(posedge clk) begin
     end
     
 
-    EVENT begin
+    EVENT: begin
         if (counter < 5) begin
             if (p_prev != p) begin
                 state <= IDLE;
@@ -53,10 +52,14 @@ always @(posedge clk) begin
             end
         end else begin
             p_prev <= 0;
-            {x_out, y_out, p_out, t_out} ={x, y, p, t};
+          {x_out, y_out, p_out, t_out} <={x, y, p, t};
             state <= IDLE;
             counter <= 0;
         end
+    end
+      
+    default: begin
+      state <= IDLE;
     end
     
 endcase
@@ -86,4 +89,5 @@ end
 
 
 endmodule
+
 
