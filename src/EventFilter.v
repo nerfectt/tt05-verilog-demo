@@ -47,6 +47,11 @@ always @(posedge clk) begin
         x_prev <= x;
         y_prev <= y;
         t_prev <= t;
+        
+        p_out <= 0;
+        x_out <= 0;
+        y_out <= 0;
+        t_out <= 0;
         state <= EVENT;
     end
     

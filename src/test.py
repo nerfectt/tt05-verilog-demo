@@ -26,9 +26,17 @@ async def test_my_design(dut):
     dut.ui_in.value = my_high_Tuple # 151
     await ClockCycles(dut.clk,5)
 
+    # wait for an extra clock cycle
+    dut.ui_in.value = 0
+    await ClockCycles(dut.clk,1)
+
     # Test 2: 5 cycles of low P
     dut.ui_in.value = my_low_Tuple # 147
-    await ClockCycles(dut.clk,5)
+    await ClockCycles(dut.clk,6)
+
+    # wait for an extra clock cycle
+    dut.ui_in.value = 0
+    await ClockCycles(dut.clk,1)
 
     # Test 3: 4 cycles of high p & 1 cycle of low p
     dut.ui_in.value = my_high_Tuple # 151
@@ -36,7 +44,27 @@ async def test_my_design(dut):
     dut.ui_in.value = my_low_Tuple # 147
     await ClockCycles(dut.clk,1)
 
+    # wait for an extra clock cycle
+    dut.ui_in.value = 0
+    await ClockCycles(dut.clk,1)
 
+    # Test 4: 4 cycles of low p & 1 cycle of high p
+    dut.ui_in.value = my_low_Tuple # 147
+    await ClockCycles(dut.clk,4)
+    dut.ui_in.value = my_high_Tuple # 151
+    await ClockCycles(dut.clk,1)
+
+    # wait for an extra clock cycle
+    dut.ui_in.value = 0
+    await ClockCycles(dut.clk,1)
+
+    # random test
+    dut.ui_in.value = my_low_Tuple # 147
+    await ClockCycles(dut.clk,3)
+    dut.ui_in.value = my_high_Tuple # 151
+    await ClockCycles(dut.clk,1)
+    dut.ui_in.value = my_low_Tuple # 147
+    await ClockCycles(dut.clk,1)
 
 
     # # Test 2: 1 extra cycle of high p (diff x,y,t value)
