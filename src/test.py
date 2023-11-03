@@ -56,32 +56,11 @@ async def test_my_design(dut):
 
     # wait for an extra clock cycle
     dut.ui_in.value = 0
-    await ClockCycles(dut.clk,1)
-
-    # random test
-    dut.ui_in.value = my_low_Tuple # 147
-    await ClockCycles(dut.clk,3)
-    dut.ui_in.value = my_high_Tuple # 151
-    await ClockCycles(dut.clk,1)
-    dut.ui_in.value = my_low_Tuple # 147
-    await ClockCycles(dut.clk,1)
-
-
-    # # Test 2: 1 extra cycle of high p (diff x,y,t value)
-    # dut.ui_in.value = my_high_Tuple_new # 199
-    # await ClockCycles(dut.clk,1)
-
-    # #Test 3: 5 cycles of low p
-    # dut.ui_in.value = my_low_Tuple_1 # 147
-    # await ClockCycles(dut.clk,5)
-
-    # # Test 4: 1 extra cycle of low p (diff x,y,t value)
-    # dut.ui_in.value = my_low_Tuple_2 # 159
-    # await ClockCycles(dut.clk,1)
+    await ClockCycles(dut.clk,50)
     
-    # wait for a while and run for 100 cycles
-    for _ in range(50):
-        await RisingEdge(dut.clk)
+    # # wait for a while and run for 100 cycles
+    # for _ in range(50):
+    #     await RisingEdge(dut.clk)
 
     dut._log.info("Finished Sim")
 

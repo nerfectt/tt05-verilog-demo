@@ -47,7 +47,7 @@ always @(posedge clk) begin
         x_prev <= x;
         y_prev <= y;
         t_prev <= t;
-        
+
         p_out <= 0;
         x_out <= 0;
         y_out <= 0;
@@ -64,14 +64,15 @@ always @(posedge clk) begin
                 counter <= counter + 1;
             end
         end else begin
-          {x_out, y_out, p_out, t_out} <= {x_prev, y_prev, p_prev, t_prev};
+            {x_out, y_out, p_out, t_out} <= {x_prev, y_prev, p_prev, t_prev};
             p_prev <= 2'b0;
             x_prev <= 2'b0;
             y_prev <= 2'b0;
             t_prev <= 2'b0;
-
+            
             state <= IDLE;
             counter <= 3'b0;
+        
         end
     end
       
